@@ -50,15 +50,15 @@ const FAQSPage: NextPage<Props> = ({ faqs }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const response = await fetch("https://final-front-3-pi.vercel.app/api/faqs");
-  const faqs = await response.json();
+// export const getStaticProps: GetStaticProps = async () => {
+//   const response = await fetch("https://final-front-3-pi.vercel.app/api/faqs");
+//   const faqs = await response.json();
 
-  return {
-    props: {
-      faqs,
-    },
-  };
-};
+//   return {
+//     props: {
+//       faqs,
+//     },
+//   };
+// };
 
 export default FAQSPage;
