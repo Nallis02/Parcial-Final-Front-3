@@ -6,18 +6,10 @@ import {
   Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { GetStaticProps, NextPage } from "next";
 import BodySingle from "dh-marvel/components/layouts/body/single/body-single";
 import Head from "next/head";
-
-interface FAQ {
-  id: number;
-  question: string;
-  answer: string;
-}
-
-interface Props {
-  faqs: FAQ[];
+ interface Props  {
+  faqs: FaqsType[];
 }
 const FAQSPage: NextPage<Props> = ({ faqs }) => {
   return (
@@ -50,15 +42,15 @@ const FAQSPage: NextPage<Props> = ({ faqs }) => {
   );
 };
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   const response = await fetch("https://final-front-3-pi.vercel.app/api/faqs");
-//   const faqs = await response.json();
+export const getStaticProps: GetStaticProps = async () => {
+  const response = await fetch("https://parcial-final-front-3-i9t45z23j-nallis02.vercel.app/faqs");
+  const faqs = await response.json();
 
-//   return {
-//     props: {
-//       faqs,
-//     },
-//   };
-// };
+  return {
+    props: {
+      faqs,
+    },
+  };
+};
 
 export default FAQSPage;
