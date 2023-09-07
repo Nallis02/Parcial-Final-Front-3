@@ -46,10 +46,10 @@ const FAQSPage: NextPage<Props> = ({ faqs }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const url = "https://parcial-final-front-3.vercel.app";
-  const response = await fetch(`${url}/api/faqs`);
-  const json = await response.text();
-  const faqs = JSON.parse(json);
+  const url = "https://ctd-esp-fe3-final-swart.vercel.app/api/faqs";
+  const response = await fetch(`${url}`);
+  const faqs = await response.json();
+  // const faqs = JSON.parse(json);
   return {
     props: {
       faqs,
