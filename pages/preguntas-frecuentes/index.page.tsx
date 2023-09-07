@@ -8,13 +8,12 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import BodySingle from "dh-marvel/components/layouts/body/single/body-single";
 import Head from "next/head";
 import { FaqsType } from "dh-marvel/components/faqs/faqsData";
-import { GetStaticProps, NextPage } from "next";
- type Props = {
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+type Props = {
   faqs: FaqsType[];
-}
+};
 
 const FAQSPage: NextPage<Props> = ({ faqs }) => {
-  
   return (
     <>
       <Head>
@@ -30,26 +29,27 @@ const FAQSPage: NextPage<Props> = ({ faqs }) => {
       </Head>
 
       <BodySingle title="Preguntas Frecuentes">
-        {faqs && faqs.map((faq) => (
-          <Accordion key={faq.id}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography variant="h6">{faq.question}</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>{faq.answer}</Typography>
-            </AccordionDetails>
-          </Accordion>
-        ))}
+        {faqs &&
+          faqs.map((faq) => (
+            <Accordion key={faq.id}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography variant="h6">{faq.question}</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>{faq.answer}</Typography>
+              </AccordionDetails>
+            </Accordion>
+          ))}
       </BodySingle>
     </>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const url = 'https://parcial-final-front-3.vercel.app';
+  const url = "https://parcial-final-front-3.vercel.app";
   const response = await fetch(`${url}/api/faqs`);
-  const faqs = await response.json()
-
+  const json = await response.text();
+  const faqs = JSON.parse(json);
   return {
     props: {
       faqs,
@@ -57,7 +57,5 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 10,
   };
 };
-
-
 
 export default FAQSPage;
