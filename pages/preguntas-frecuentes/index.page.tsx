@@ -15,7 +15,6 @@ import { GetStaticProps, NextPage } from "next";
 }
 
 const FAQSPage: NextPage<Props> = ({ faqs }) => {
-  console.log(faqs);
   
   return (
     <>
@@ -48,23 +47,14 @@ const FAQSPage: NextPage<Props> = ({ faqs }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  try {
-    const response = await fetch("https://parcial-final-front-3-jqbwgrbf8-nallis02.vercel.app/api/faqs");
-    const faqs = await response.json();
+    const url = 'https://parcial-final-front-3-hifcedkfr-nallis02.vercel.app/'
+    const response = await fetch(`${url}/api/faqs`);
+    const faqs = (await response.json()) as FaqsType[];
     return {
       props: {
         faqs,
       },
     };
-  } catch (error) {
-    console.error("Error al realizar la solicitud fetch:", error);
-    
-    return {
-      props: {
-        error: "Error al cargar los datos",
-      },
-    };
-  }
 };
 
 
