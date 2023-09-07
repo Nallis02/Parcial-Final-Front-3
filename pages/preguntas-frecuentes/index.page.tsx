@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Accordion,
   AccordionSummary,
@@ -47,15 +46,18 @@ const FAQSPage: NextPage<Props> = ({ faqs }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-    const url = 'https://parcial-final-front-3.vercel.app'
-    const response = await fetch(`${url}/api/faqs`);
-    const faqs = (await response.json()) as FaqsType[];
-    return {
-      props: {
-        faqs,
-      },
-    };
+  const url = 'https://parcial-final-front-3.vercel.app';
+  const response = await fetch(`${url}/api/faqs`);
+  const faqs = await response.json()
+
+  return {
+    props: {
+      faqs,
+    },
+    revalidate: 10,
+  };
 };
+
 
 
 export default FAQSPage;
