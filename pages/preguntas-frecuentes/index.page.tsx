@@ -15,6 +15,8 @@ import { GetStaticProps, NextPage } from "next";
 }
 
 const FAQSPage: NextPage<Props> = ({ faqs }) => {
+  console.log(faqs);
+  
   return (
     <>
       <Head>
@@ -30,7 +32,7 @@ const FAQSPage: NextPage<Props> = ({ faqs }) => {
       </Head>
 
       <BodySingle title="Preguntas Frecuentes">
-        {faqs.map((faq) => (
+        {faqs && faqs.map((faq) => (
           <Accordion key={faq.id}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Typography variant="h6">{faq.question}</Typography>
@@ -49,7 +51,6 @@ export const getStaticProps: GetStaticProps = async () => {
   try {
     const response = await fetch("https://parcial-final-front-3-jqbwgrbf8-nallis02.vercel.app/api/faqs");
     const faqs = await response.json();
-    
     return {
       props: {
         faqs,
