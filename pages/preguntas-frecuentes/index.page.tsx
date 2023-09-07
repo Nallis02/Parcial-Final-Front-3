@@ -8,9 +8,12 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import BodySingle from "dh-marvel/components/layouts/body/single/body-single";
 import Head from "next/head";
- interface Props  {
+import { FaqsType } from "dh-marvel/components/faqs/faqsData";
+import { GetStaticProps, NextPage } from "next";
+ type Props = {
   faqs: FaqsType[];
 }
+
 const FAQSPage: NextPage<Props> = ({ faqs }) => {
   return (
     <>
